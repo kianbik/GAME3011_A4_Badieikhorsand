@@ -1704,15 +1704,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'How To PLay
+  m_text: 'Player Needs to turn on lights to see data package and proccesor
 
-    Pickup data packages that are yellow in map
+    Pickup
+    data packages that are yellow in map
 
-    After
-    Picking Up Player needs to drop them in reciever
+    After Picking Up Player needs to put
+    them in proccesors which are red objects. after proccesing it will output number
+    which is the password
 
-    If the Player hit greeb
-    object he will lose Health'
+    after 10 seconds proccesor will turn white which means
+    data is ready
+
+    player should pick up the data from proccesor to drop them
+    in reciever'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9fb72713462bd34a99acbf23a40dd74, type: 2}
   m_sharedMaterial: {fileID: -4406428672775297824, guid: a9fb72713462bd34a99acbf23a40dd74, type: 2}
@@ -1739,8 +1744,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.5
-  m_fontSizeBase: 25.5
+  m_fontSize: 15.2
+  m_fontSizeBase: 15.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

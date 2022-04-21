@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public enum Difficulty { Easy, Medium, Hard};
@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
     public GameObject mediumBoard;
     public GameObject hardBoard;
     public GameObject winCanvas;
+    public GameObject passCanvas;
     public AudioSource audiosrc;
+    public string password;
+    public TMP_InputField passwordChecker;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             if (numberOfGoals == 0)
             {
-                winCanvas.SetActive(true);
+                
                 player.gameObject.SetActive(false);
                 easyBoard.gameObject.SetActive(false);
                 mediumBoard.gameObject.SetActive(false);
@@ -66,5 +69,13 @@ public class GameManager : MonoBehaviour
         }
         player.gameObject.SetActive(true);
         reciever.gameObject.SetActive(true);
+    }
+    public void onValuechanged()
+    {
+        if (passwordChecker.text == password)
+        {
+            passCanvas.SetActive(false);
+            winCanvas.SetActive(true);
+        }
     }
 }

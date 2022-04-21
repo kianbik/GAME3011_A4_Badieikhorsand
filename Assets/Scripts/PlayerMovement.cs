@@ -89,6 +89,10 @@ public class PlayerMovement : MonoBehaviour
                     trail.SetActive(false);
                     dataInHand = false;
                     gameManager.numberOfGoals--;
+                    if (gameManager.numberOfGoals == 0)
+                    {
+                        gameManager.passCanvas.SetActive(true);
+                    }
                     audiosrc.clip = dropupSound;
                     audiosrc.Play();
                 }
