@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3  moveVector = new Vector3 (1, 0,0);
     public GameObject trail;
     public bool dataInHand;
+    public bool proccesedDataInHand;
     public GameObject spawnlocation;
     int numberOfLives = 2;
     public GameManager gameManager;
@@ -19,11 +20,15 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip pickupSound;
     public AudioClip dropupSound;
     public AudioClip hitSound;
+    public Proccesor proccesor;
+    public LayerMask everythingMask;
+    public Camera mainCam;
     // Start is called before the first frame update
     void Start()
     {
         livesObj.SetActive(true);
         livesText.text = "Number Of Lives: " + numberOfLives.ToString();
+        proccesor = FindObjectOfType<Proccesor>();
     }
 
     // Update is called once per frame
@@ -54,7 +59,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Goal")
+        if (collision.gameObject.tag == "Light")
+        {
+            mainCam.cullingMask = everythingMask;
+        }
+        if (collision.gameObject.tag == "Goal")
         {
             Debug.Log("Goal");
             if (!dataInHand)
@@ -73,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.gameObject.tag == "Reciever")
         {
-            if (dataInHand)
+            if (proccesedDataInHand)
             {
                 if (trail != null)
                 {
@@ -85,8 +94,35 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
-           
         }
+        if (collision.gameObject.tag == "Proccesor")
+        {
+            if (dataInHand)
+            {
+                if (trail != null)
+                {
+                    trail.SetActive(false);
+                    dataInHand = false;
+                    audiosrc.clip = dropupSound;
+                    audiosrc.Play();
+                    proccesor.timerStart = true;
+                }
+
+            }
+            if (!dataInHand && proccesor.ready)
+            {
+                if (trail != null)
+                {
+                    trail.SetActive(true);
+                    proccesedDataInHand = true;
+                    audiosrc.clip = pickupSound;
+                    audiosrc.Play();
+                    proccesor.ResetReady();
+                }
+
+            }
+        }
+
     }
     void ResetLife()
     {
