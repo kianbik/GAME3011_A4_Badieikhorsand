@@ -53,18 +53,21 @@ public class Buttons : MonoBehaviour
     {
         gameManager.difficultySelected = GameManager.Difficulty.Easy;
         gameManager.isSelected = true;
+        gameManager.GameStart();
         DifficultyCanvas.SetActive(false);
     }
     public void OnMediumClicked()
     {
         gameManager.difficultySelected = GameManager.Difficulty.Medium;
         gameManager.isSelected = true;
+        gameManager.GameStart();
         DifficultyCanvas.SetActive(false);
     }
     public void OnHardClicked()
     {
         gameManager.difficultySelected = GameManager.Difficulty.Hard;
         gameManager.isSelected = true;
+        gameManager.GameStart();
         DifficultyCanvas.SetActive(false);
     }
 
