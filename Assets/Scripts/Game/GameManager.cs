@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject mediumBoard;
     public GameObject hardBoard;
     public GameObject winCanvas;
+    public AudioSource audiosrc;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,10 @@ public class GameManager : MonoBehaviour
                 easyBoard.gameObject.SetActive(false);
                 mediumBoard.gameObject.SetActive(false);
                 hardBoard.gameObject.SetActive(false);
+                reciever.gameObject.SetActive(false);
+                player.livesObj.SetActive(false);
+                if(!audiosrc.isPlaying)
+                audiosrc.Play();
             }
         }
         

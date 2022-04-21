@@ -14,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject loseCanvas;
     public GameObject livesObj;
     [SerializeField] TextMeshProUGUI livesText;
+
+    public AudioSource audiosrc;
+    public AudioClip pickupSound;
+    public AudioClip dropupSound;
+    public AudioClip hitSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
                 trail.SetActive(true);
                 Destroy(collision.gameObject);
                 dataInHand = true;
+                audiosrc.clip = pickupSound;
+                audiosrc.Play();
             }
         }
         if (collision.gameObject.tag == "Border")
@@ -73,10 +80,12 @@ public class PlayerMovement : MonoBehaviour
                     trail.SetActive(false);
                     dataInHand = false;
                     gameManager.numberOfGoals--;
+                    audiosrc.clip = dropupSound;
+                    audiosrc.Play();
                 }
 
             }
-            Debug.Log("y");
+           
         }
     }
     void ResetLife()
@@ -87,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position = spawnlocation.transform.position;
             moveVector = new Vector3(1.0f, 0, 0);
             livesText.text = "Number Of Lives: " + numberOfLives.ToString();
-
+            audiosrc.clip = hitSound;
+            audiosrc.Play();
         }
         else
         {
